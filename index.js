@@ -52,6 +52,12 @@ const Driver = (0, stdlib_paper_1.type)('com.mysql.cj.jdbc.Driver');
 const sql = (0, stdlib_paper_1.type)('me.vagdedes.mysql.database.MySQL');
 //@ts-expect-error
 sql.connect();
+const query = {
+    getFriends(friender, friendee) {
+        //@ts-expect-error
+        sql.query(`select * from users AS \`friend\` join friendships on friender_id = friend.id where friendee_id = ${friender} and aceppted_at is null and blocked_at is null`);
+    }
+};
 let Proxy;
 exports.Proxy = Proxy;
 let Port;

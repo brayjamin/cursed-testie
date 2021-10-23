@@ -45,6 +45,14 @@ const Driver = type('com.mysql.cj.jdbc.Driver');
 const sql = type('me.vagdedes.mysql.database.MySQL');
 //@ts-expect-error
 sql.connect();
+const query = {
+   getFriends (friender: string, friendee: string) {
+      //@ts-expect-error
+      sql.query(
+         `select * from users AS \`friend\` join friendships on friender_id = friend.id where friendee_id = ${friender} and aceppted_at is null and blocked_at is null`
+      );
+   }
+};
 type Proxy = Server;
 let Proxy: Proxy;
 let Port;
